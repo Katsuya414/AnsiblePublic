@@ -1,0 +1,12 @@
+- hosts: ios show version
+  gather_facts: no
+  connection: local
+
+  tasks:
+      - name: configure interface settings
+        iosxr_config:
+         lines:
+           - router static
+           - router static vrf SHIMA
+           - router static vrf SHIMA address-family ipv4 unicast
+           - router static vrf SHIMA address-family ipv4 unicast 192.168.100.0/24 BVI11009 10.0.0.2
