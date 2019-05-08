@@ -1,0 +1,21 @@
+- hosts: ios   # イベントファイルで 192.168.1.1を定義済み。
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: config
+      ios_config:
+        parents:
+         - interface GigabitEthernet0/3 # 対象のインターフェース
+        lines:
+         - no shutdown            # 実行したいコンフィグ
+        provider: "{{ cli }}"
+      register: result
+
+  vars:
+    cli:   # 接続情報を辞書で定義（usernameとそれ以降はインベントリファイルから取得定義）
+      host:     "{{ inventory }}"    # ホスト対象ホスト
+      username: "{{ ansible_user }}"          # ログインユーザー
+      password: "{{ ansible_password }}"      # ログインパスワード
+      authorize: true                         # 特権モードに移行
+      auth_pass: "{{  }}"  # 特権パスワード
