@@ -1,0 +1,16 @@
+- hosts: ios show version
+  gather_facts: no
+  connection: local
+
+  tasks:
+      - name: configure interface settings
+        iosxr_config:
+         lines:
+           - description V05909070_N005909070
+           - ip address 172.31.1.1 255.255.255.0
+           - vrf V05909070
+           - service-policy input L3-BestEffort-in
+           - ipv4 address 10.0.0.1 255.255.255.0
+           - ipv4 directed-broadcast
+         parents: interface BVI11012
+
