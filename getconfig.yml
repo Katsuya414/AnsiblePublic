@@ -1,0 +1,19 @@
+- hosts: ios   # イベントファイルで 192.168.1.1を定義済み。もちろん複数定義もOK。
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: set
+      ios_template:
+        provider: "{{ cli }}"
+        src: config.j2           # ★★別途定義するテンプレートファイル（今回は空）
+        backup: true             # ★★バックアップを取得するオプション
+        include_defaults: false
+
+  vars:
+    cli:   # 接続情報を辞書で定義（usernameとそれ以降はインベントリファイルから取得定義）
+      host:     "{{ inventory }}"    # ホスト対象ホスト
+      username: "{{  }}"          # ログインユーザー
+      password: "{{  }}"      # ログインパスワード
+      authorize: true                         # 特権モードに移行
+      auth_pass: "{{  }}"  # 特権パスワード
