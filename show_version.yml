@@ -1,0 +1,13 @@
+- hosts: ios # イベントファイルで 192.168.1.1を定義済み
+  gather_facts: no
+
+  tasks:
+    - name: show version
+      ios_command:
+        commands:
+        - show version
+      register: result
+
+    - name: debug
+      debug:
+        msg: "{{ result.stdout_lines[0] }}"
