@@ -1,0 +1,14 @@
+- hosts: ios show version
+  gather_facts: no
+  connection: local
+
+  tasks:
+      - name: configure
+        iosxr_config:
+         lines:
+           - vrf SHIMA
+           - vrf SHIMA address-family ipv4 unicast
+           - vrf SHIMA address-family ipv4 unicast import route-target
+           - vrf SHIMA address-family ipv4 unicast import route-target 9598:1
+           - vrf SHIMA address-family ipv4 unicast export route-target
+           - vrf SHIMA address-family ipv4 unicast export route-target 9598:1
