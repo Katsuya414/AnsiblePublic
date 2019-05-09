@@ -1,0 +1,26 @@
+- hosts: ios show version
+  gather_facts: no
+  connection: local
+
+  tasks:
+      - name: configure interface settings
+        iosxr_config:
+         lines:
+           - l2vpn
+           - l2vpn bridge group L2VPN
+           - l2vpn bridge group L2VPN bridge-domain SHIMA
+           - l2vpn bridge group L2VPN bridge-domain SHIMA routed interface BVI11
+           - l2vpn bridge group L2VPN bridge-domain SHIMA mac
+           - l2vpn bridge group L2VPN bridge-domain SHIMA mac withdraw optimize
+           - l2vpn bridge group L2VPN bridge-domain SHIMA mac limit
+           - l2vpn bridge group L2VPN bridge-domain SHIMA mac limit maximum 20
+           - l2vpn bridge group L2VPN bridge-domain SHIMA mac limit action flood
+           - l2vpn bridge group L2VPN bridge-domain SHIMA mac limit notification both
+           - l2vpn bridge group L2VPN bridge-domain SHIMA mtu 1500
+           - l2vpn bridge group L2VPN bridge-domain SHIMA vfi SHIMA
+           - l2vpn bridge group L2VPN bridge-domain SHIMA vfi SHIMA vpn-id 1
+           - l2vpn bridge group L2VPN bridge-domain SHIMA vfi SHIMA autodiscovery bgp
+           - l2vpn bridge group L2VPN bridge-domain SHIMA vfi SHIMA autodiscovery bgp rd 9598:1
+           - l2vpn bridge group L2VPN bridge-domain SHIMA vfi SHIMA autodiscovery bgp route-target import 9598:1
+           - l2vpn bridge group L2VPN bridge-domain SHIMA vfi SHIMA autodiscovery bgp route-target export 9598:1
+           - l2vpn bridge group L2VPN bridge-domain SHIMA vfi SHIMA autodiscovery bgp signaling-protocol ldp
