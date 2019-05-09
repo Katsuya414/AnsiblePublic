@@ -9,4 +9,4 @@
            - router static
            - router static vrf SHIMA
            - router static vrf SHIMA address-family ipv4 unicast
-           - router static vrf SHIMA address-family ipv4 unicast 192.168.100.0/24 BVI11009 10.0.0.2
+           - router static vrf SHIMA address-family ipv4 unicast 192.168.100.0/24 BVI11 10.0.0.2
