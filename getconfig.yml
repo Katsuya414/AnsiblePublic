@@ -16,4 +16,4 @@
       username: "{{  }}"          # ログインユーザー
       password: "{{  }}"      # ログインパスワード
       authorize: true                         # 特権モードに移行
-      auth_pass: "{{  }}"  # 特権パスワード
+      auth_pass: "{{  }}" 
