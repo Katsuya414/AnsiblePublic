@@ -1,4 +1,4 @@
-- hosts: ios show version
+- hosts: iosxr
   gather_facts: no
   connection: local
 
@@ -6,11 +6,10 @@
       - name: configure interface settings
         iosxr_config:
          lines:
-           - description V05909070_N005909070
-           - ip address 172.31.1.1 255.255.255.0
-           - vrf V05909070
-           - service-policy input L3-BestEffort-in
+           - description SHIMA
+           - ip address 192.168.0.1 255.255.255.0
+           - vrf SHIMA
+           - service-policy input SHIMA
            - ipv4 address 10.0.0.1 255.255.255.0
-           - ipv4 directed-broadcast
-         parents: interface BVI11012
+         parents: interface gi0/0/0/0
 
